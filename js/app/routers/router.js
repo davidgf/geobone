@@ -1,23 +1,27 @@
-define(['jquery', 'backbone'], function( $, Backbone ) {
+define(['jquery', 'backbone', 'ui'], function( $, Backbone, UI ) {
   var Router = Backbone.Router.extend( {
     routes: {
       "map": "map",
       "" : "root"
     },
     map: function() {
-      $.mobile.changePage( "#map", {
+      app.views.map.render();
+      app.collections.adverts.fetch();
+      app.views.advertsList.render();
+      UI.changePage('#map');
+      /*$.mobile.changePage( "#map", {
         transition: "pop",
         reverse: false,
         changeHash: true
-      });
+      });*/
     },
     root: function() {
-      app.views.map.render();
-      $.mobile.changePage( "#main", {
+      UI.changePage('#main');
+      /*$.mobile.changePage( "#main", {
         transition: "pop",
         reverse: false,
         changeHash: true
-      });
+      });*/
     }
   });
   

@@ -3,34 +3,43 @@
 <head>
   <title>GeoBone</title>
   
-  <meta name="viewport" content="width=100%, height=100%, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width = device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta charset="UTF-8">
   
+  <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/jquery-mobile/jquery.mobile-1.2.0.min.css" />
+  <link rel="stylesheet" href="css/lungo/lungo.css">
+  <link rel="stylesheet" href="css/lungo/lungo.icon.css">
+  <link rel="stylesheet" href="css/lungo/lungo.theme.default.css">
+<!--  <link rel="stylesheet" href="css/jquery-mobile/jquery.mobile-1.2.0.min.css" /> -->
   
-  <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" src="js/lib/jquery.mobile-1.2.0.min.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkE2Uy5HdcOegLypxtsL9x9-c5Zmz_71Y&sensor=true"></script>
   <script type="text/javascript" src="js/lib/cordova-2.2.0.js"></script>
-  <script src="http://debug.phonegap.com/target/target-script-min.js#geobone"></script>
+  <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkE2Uy5HdcOegLypxtsL9x9-c5Zmz_71Y&sensor=true"></script>
+  <script type="text/javascript" src="js/lib/quo.js"></script>
+  <script type="text/javascript" src="js/lib/lungo.js"></script>
+  <!--<script src="http://debug.phonegap.com/target/target-script-min.js#geobone"></script> -->
+  <script src="http://localhost:8081/target/target-script-min.js#geobone"></script>
   <script data-main="js/config" src="js/lib/require.js"></script>
 </head>
 <body>
-  <div data-role="page" id="main">
-    <div data-role="header">
+  <div class="page" id="main">
+    <div class="header">
       <h2>index</h2>
     </div>
-    <div data-role="content">
+    <div class="content">
       <a href="#map" data-role="button">Ir a mapa</a>
     </div>
   </div>
-  <div data-role="page" id="map">
-    <div data-role="header">
+  <div class="page" id="map">
+    <div class="header">
+      <a data-role="back" href="javascript:void(0)" >Back</a>
       <h2>Mapa</h2>
     </div>
-    <div data-role="content">
+    <div class="content">
       <div id="map_canvas" style="width: 100%; height: 100%"></div>
+      <ul id="adverts_list"></ul>
     </div>
   </div>
 </body>
