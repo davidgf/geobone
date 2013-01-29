@@ -14,13 +14,18 @@ require.config({
     templates: 'app/templates',
     views: 'app/views',
     lsAdapter: 'lib/backbone.localStorage-min',
-    text: 'lib/text'
+    text: 'lib/text',
+    lungo: 'lib/lungo'
   },
   shim: {
     underscore: { exports: '_' },
     backbone: {
       deps: ['underscore', 'jquery'],
       exports: 'Backbone'
+    },
+    lungo: {
+      deps: ['lib/quo'],
+      exports: 'Lungo'
     },
     lsAdapter: {
       deps: ['backbone']

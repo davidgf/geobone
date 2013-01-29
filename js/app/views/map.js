@@ -43,7 +43,7 @@ define(['jquery', 'underscore', 'backbone', 'views/adMarker', 'geomarker'], func
         setTimeout(function(){
           window.google.maps.event.trigger(self.map, "resize");
         },200);
-      });
+      }, {maximumAge:6000, timeout: 2000});
       return this;
     },
     

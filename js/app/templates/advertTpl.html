@@ -1,5 +1,8 @@
 <script type="text/template" id="advertListItems">
   <% _.each(adverts, function(ad){ %>
-    <li><%= ad.title %>: ooo <%= ad.text %></li>
+    <li>
+      <strong><%= ad.title %></strong>
+      <small><%= ad.text %></small>
+    </li>
   <% }); %>
 </script>
