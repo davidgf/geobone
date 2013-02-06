@@ -12,23 +12,22 @@ define(['jquery', 'underscore', 'backbone', 'views/adMarker', 'geomarker'], func
     },
     
     initialize: function(){
-      var self = this;
-      window.app.collections.adverts.on('add', this.addAdvert, this );
-      //window.app.collections.adverts.on('reset', this.addAllAdverts, this );
-      this.on('mapready', this.addAllAdverts );
-    },
-    
-    render: function(){
-      var self = this, map,
+      var self = this,
         mapOptions = {
           zoom: 8,
           center: new google.maps.LatLng(this.lat, this.lng),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
       this.$el.css('min-height', '300px');
+      self.map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+      window.app.collections.adverts.on('add', this.addAdvert, this );
+      this.on('mapready', this.addAllAdverts );
+    },
+    
+    render: function(){
+      var self = this;
       navigator.geolocation.getCurrentPosition(function(pos){
-        mapOptions.center = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        self.map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        self.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
         self.trigger('mapready');
         GeoMarker = new GeolocationMarker();
         GeoMarker.setCircleOptions({fillColor: '#808080'});
@@ -38,7 +37,6 @@ define(['jquery', 'underscore', 'backbone', 'views/adMarker', 'geomarker'], func
         }, 100);
       }, function(err){
         console.log('Error getting position: '+err.message);
-        self.map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         self.trigger('mapready');
         setTimeout(function(){
           window.google.maps.event.trigger(self.map, "resize");
